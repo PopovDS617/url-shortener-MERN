@@ -1,4 +1,4 @@
-export interface ShortUrl extends Document {
+export interface IShortUrl extends Document {
   shortId: string;
   destination: string;
 }
