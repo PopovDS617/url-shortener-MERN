@@ -2,7 +2,7 @@ import express from 'express';
 import config from 'config';
 import routes from './routes';
 import bodyParser from 'body-parser';
-import mongoConnect from '../config/db';
+import mongoConnect from './config/db';
 import cors from 'cors';
 
 mongoConnect();
