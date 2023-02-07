@@ -1,10 +1,13 @@
 import React, { FormEvent,useState } from "react";
 import ArrowIcon from "./ArrowIcon";
 import {motion} from 'framer-motion'
+import axios from 'axios'
  
 
 const App=()=>{
 const [url,setUrl]=useState<string>('')
+const [isLoading,setIsLoading]useState(false)
+const [error,setError]useState({hasError:false,errorText:''})
 const [response,setResponse]=useState<string>('')
 
 const options = {
@@ -14,13 +17,22 @@ const options = {
   };
 const sumbitHandler=(e:FormEvent)=>{
 e.preventDefault()
- 
 }
 
-const inputHandler=(e:React.ChangeEvent<HTMLInputElement>)=>{
+
+const inputHandler= async(e:React.ChangeEvent<HTMLInputElement>)=>{
 const inputUrl=e.target.value
-setUrl(inputUrl)
-//fetch data
+setIsLoading(true)
+try{
+const data = await axios.get('URL')
+const result = data.data
+setUrl(data)
+}catch(err){
+setIsLoading(false)
+setIsError({hasError:true, errorText:err})
+}
+
+ 
 }
 
     return(
