@@ -7,7 +7,7 @@ export const createShortUrl = async (
   next: NextFunction
 ) => {
   const { destination } = req.body;
-  console.log(req.body);
+
   const short = await shortUrl.create({ destination });
   return res.status(201).json({ short });
 };
