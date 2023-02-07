@@ -16,7 +16,6 @@ exports.redirectHandler = exports.createShortUrl = void 0;
 const shortUrl_1 = __importDefault(require("../models/shortUrl"));
 const createShortUrl = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const { destination } = req.body;
-    console.log(req.body);
     const short = yield shortUrl_1.default.create({ destination });
     return res.status(201).json({ short });
 });
