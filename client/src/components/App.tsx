@@ -1,59 +1,89 @@
-import React, { FormEvent,useState } from "react";
+import React, { FormEvent, useState } from "react";
 import ArrowIcon from "./ArrowIcon";
-import {motion} from 'framer-motion'
-import axios from 'axios'
- 
+import { motion } from "framer-motion";
+import axios from "axios";
+import AxiosError from "axios/lib/core/AxiosError";
+import Spinner from "./Spinner";
 
-const App=()=>{
-const [url,setUrl]=useState<string>('')
-const [isLoading,setIsLoading]useState(false)
-const [error,setError]useState({hasError:false,errorText:''})
-const [response,setResponse]=useState<string>('')
+const App = () => {
+  const [url, setUrl] = useState<string>("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState({ hasError: false, errorText: "" });
+  const [response, setResponse] = useState<string>("");
 
-const options = {
-    initial: { opacity: 0,y:-15 },
-    animate: { opacity: 1,y:0 },
-    exit: { opacity: 0,y:-15 },
+  const options = {
+    initial: { opacity: 0, y: -15 },
+    animate: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: -15 },
   };
-const sumbitHandler=(e:FormEvent)=>{
-e.preventDefault()
-}
+  const sumbitHandler = async (e: FormEvent) => {
+    e.preventDefault();
+    setResponse("");
+    setError({ hasError: false, errorText: "" });
+    setIsLoading(true);
+    try {
+      const data = await axios({
+        method: "POST",
+        url: process.env.API_URL + "api/" + "url",
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+        data: { destination: url },
+      });
 
+      const shortId = data.data.short.shortId;
+      setIsLoading(false);
+      setResponse(shortId);
+    } catch (err: AxiosError) {
+      setIsLoading(false);
 
-const inputHandler= async(e:React.ChangeEvent<HTMLInputElement>)=>{
-const inputUrl=e.target.value
-setIsLoading(true)
-try{
-const data = await axios.get('URL')
-const result = data.data
-setUrl(data)
-}catch(err){
-setIsLoading(false)
-setIsError({hasError:true, errorText:err})
-}
+      if (err.response?.data.message === "Must be a valid URL") {
+        setError({ hasError: true, errorText: "Entered URL is not valid" });
+      } else setError({ hasError: true, errorText: "Something went wrong :(" });
+    }
+  };
 
- 
-}
+  const inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputUrl = e.target.value.trim();
+    setUrl(inputUrl);
+  };
+  console.log(isLoading);
+  return (
+    <form
+      onSubmit={sumbitHandler}
+      className="flex w-full flex-col items-center justify-center text-xl"
+    >
+      <div>
+        <input
+          type="text"
+          className="focus: p-1 text-black outline-none"
+          onChange={inputHandler}
+        />
+        <button className="ml-4 p-1 px-4   outline  outline-2 outline-white duration-150  hover:-translate-y-1 hover:shadow-md hover:shadow-white hover:transition-all hover:duration-150 ">
+          press
+        </button>
+      </div>
+      {isLoading ? (
+        <div className="mt-5">
+          <Spinner />
+        </div>
+      ) : null}
+      {(response || error.hasError) && (
+        <motion.div
+          variants={options}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          transition={{ duration: 0.5 }}
+          className="mt-5 flex w-full flex-col items-center justify-start"
+        >
+          <ArrowIcon />
+          {response && <p className="mt-2">{process.env.API_URL + response}</p>}
+          {error && <p className="mt-2">{error.errorText}</p>}
+        </motion.div>
+      )}
+    </form>
+  );
+};
 
-    return(
-    <form onSubmit={sumbitHandler} className="w-full flex justify-center items-center flex-col text-xl">
-<div>
-<input type='text' className="p-1 focus: outline-none text-black" onChange={inputHandler}/>
-<button className="ml-4 p-1 px-4   outline  outline-2 outline-white hover:-translate-y-1  hover:transition-all hover:duration-150 duration-150 hover:shadow-md hover:shadow-white "> press</button>
-
-</div>
-{url && (<motion.div variants={options}
-      initial='initial'
-      animate='animate'
-      exit='exit'
-      transition={{duration:0.5}} className="flex flex-col justify-start items-center w-full mt-5">
-    <ArrowIcon/>
-    <p className="mt-2">{url}</p>
-{/* <span>to</span>
-<span>become shorter:</span> */}
-</motion.div>)}
-
-</form>)
-}
-
-export default App
+export default App;
