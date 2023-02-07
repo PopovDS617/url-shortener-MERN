@@ -4,8 +4,8 @@
   "main": "app.js",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon --config nodemon.json src/app.ts",
-    "build": "tsc"
+    "dev": "nodemon --config nodemon.json app.ts",
+    "build": "npx tsc"
   },
   "dependencies": {
     "body-parser": "^1.19.0",

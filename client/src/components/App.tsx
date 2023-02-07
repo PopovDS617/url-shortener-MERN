@@ -47,7 +47,7 @@ const App = () => {
     const inputUrl = e.target.value.trim();
     setUrl(inputUrl);
   };
-  console.log(isLoading);
+
   return (
     <form
       onSubmit={sumbitHandler}
