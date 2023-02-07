@@ -17,7 +17,14 @@ app.get('/', (req, res) => {
 app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(apiRoutes);
-app.use(cors());
+//app.use(cors());
+
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+});
 
 app.listen(process.env.PORT || 4000, () => {
   console.log('app is running');
