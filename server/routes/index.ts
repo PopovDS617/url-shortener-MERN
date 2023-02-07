@@ -6,7 +6,7 @@ import destination from '../schemas/destinationSchema';
 
 const router = Router();
 
-router.post('/api/url', validateSchema(destination), createShortUrl);
+router.post('/url/', validateSchema(destination), createShortUrl);
 router.get('/:shortId', redirectHandler);
 
 export default router;

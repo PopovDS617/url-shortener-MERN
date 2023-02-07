@@ -7,7 +7,6 @@ const express_1 = __importDefault(require("express"));
 const path_1 = __importDefault(require("path"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const db_1 = __importDefault(require("./db/db"));
-const cors_1 = __importDefault(require("cors"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const index_1 = __importDefault(require("./routes/index"));
 dotenv_1.default.config();
@@ -19,7 +18,19 @@ app.get('/', (req, res) => {
 app.use(express_1.default.static('public'));
 app.use(body_parser_1.default.json());
 app.use(index_1.default);
-app.use((0, cors_1.default)());
+//app.use(cors());
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    // res.setHeader('Access-Control-Allow-Credentials', true);
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, OPTIONS, DELETE');
+    if (req.method === 'OPTIONS') {
+        return res.status(200).json({
+            body: 'OK',
+        });
+    }
+    next();
+});
 app.listen(process.env.PORT || 4000, () => {
     console.log('app is running');
 });

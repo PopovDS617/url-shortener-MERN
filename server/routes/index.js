@@ -8,6 +8,6 @@ const express_1 = require("express");
 const validateSchema_1 = __importDefault(require("../middleware/validateSchema"));
 const destinationSchema_1 = __importDefault(require("../schemas/destinationSchema"));
 const router = (0, express_1.Router)();
-router.post('/api/url', (0, validateSchema_1.default)(destinationSchema_1.default), shortUrl_1.createShortUrl);
+router.post('/url/', (0, validateSchema_1.default)(destinationSchema_1.default), shortUrl_1.createShortUrl);
 router.get('/:shortId', shortUrl_1.redirectHandler);
 exports.default = router;
