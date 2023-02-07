@@ -19,7 +19,7 @@ const Spinner = () => {
         width="45px"
         height="45px"
         stroke="black"
-        stroke-width="10"
+        strokeWidth="10"
         fill="black"
       ></rect>
       <rect
