@@ -22,6 +22,7 @@ const createShortUrl = (req, res, next) => __awaiter(void 0, void 0, void 0, fun
 exports.createShortUrl = createShortUrl;
 const redirectHandler = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { shortId } = req.params;
+    console.log(req.method);
     const short = yield shortUrl_1.default.findOne({ shortId }).lean();
     if (!short) {
         return res.sendStatus(404);
