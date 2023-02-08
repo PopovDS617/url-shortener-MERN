@@ -53,13 +53,13 @@ const App = () => {
       onSubmit={sumbitHandler}
       className="flex w-full flex-col items-center justify-center text-xl"
     >
-      <div>
+      <div className="w-full text-center">
         <input
           type="text"
-          className="focus: p-1 text-black outline-none"
+          className="w-1/2 p-1 text-black outline-none"
           onChange={inputHandler}
         />
-        <button className="ml-4 p-1 px-4   outline  outline-2 outline-white duration-150  hover:-translate-y-1 hover:shadow-md hover:shadow-white hover:transition-all hover:duration-150 ">
+        <button className="ml-4 p-1 px-4 outline outline-2 outline-white duration-150  hover:-translate-y-1 hover:shadow-md hover:shadow-white hover:transition-all hover:duration-150 ">
           press
         </button>
       </div>
