@@ -24,7 +24,7 @@ const App = () => {
     try {
       const data = await axios({
         method: "POST",
-        url: process.env.API_URL,
+        url: process.env.API_URL + "url",
         headers: {
           "Content-type": "application/json; charset=UTF-8",
         },
