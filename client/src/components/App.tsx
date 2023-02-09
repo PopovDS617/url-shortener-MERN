@@ -6,6 +6,7 @@ import AxiosError from "axios/lib/core/AxiosError";
 import Spinner from "./ui/Spinner";
 import SuccessResponse from "./response/SuccessResponse";
 import ErrorResponse from "./response/ErrorResponse";
+import OnResponseAnimation from "./animation/OnResponseAnimation";
 
 const App = () => {
   const [url, setUrl] = useState<string>("");
@@ -13,11 +14,6 @@ const App = () => {
   const [error, setError] = useState({ hasError: false, errorText: "" });
   const [response, setResponse] = useState<string>("");
 
-  const options = {
-    initial: { opacity: 0, y: -15 },
-    animate: { opacity: 1, y: 0 },
-    exit: { opacity: 0, y: -15 },
-  };
   const sumbitHandler = async (e: FormEvent) => {
     e.preventDefault();
     setResponse("");
@@ -71,18 +67,11 @@ const App = () => {
         </div>
       ) : null}
       {(response || error.hasError) && (
-        <motion.div
-          variants={options}
-          initial="initial"
-          animate="animate"
-          exit="exit"
-          transition={{ duration: 0.5 }}
-          className="mt-5 flex w-full flex-col items-center justify-start"
-        >
+        <OnResponseAnimation style="mt-5 flex w-full flex-col items-center justify-start">
           <ArrowIcon />
           {response && <SuccessResponse response={response} />}
           {error.hasError && <ErrorResponse errorText={error.errorText} />}
-        </motion.div>
+        </OnResponseAnimation>
       )}
     </form>
   );
