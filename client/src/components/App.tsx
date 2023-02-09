@@ -1,9 +1,11 @@
 import React, { FormEvent, useState } from "react";
-import ArrowIcon from "./ArrowIcon";
+import ArrowIcon from "./ui/ArrowIcon";
 import { motion } from "framer-motion";
 import axios from "axios";
 import AxiosError from "axios/lib/core/AxiosError";
-import Spinner from "./Spinner";
+import Spinner from "./ui/Spinner";
+import SuccessResponse from "./response/SuccessResponse";
+import ErrorResponse from "./response/ErrorResponse";
 
 const App = () => {
   const [url, setUrl] = useState<string>("");
@@ -78,8 +80,8 @@ const App = () => {
           className="mt-5 flex w-full flex-col items-center justify-start"
         >
           <ArrowIcon />
-          {response && <p className="mt-2">{process.env.API_URL + response}</p>}
-          {error && <p className="mt-2">{error.errorText}</p>}
+          {response && <SuccessResponse response={response} />}
+          {error.hasError && <ErrorResponse errorText={error.errorText} />}
         </motion.div>
       )}
     </form>
