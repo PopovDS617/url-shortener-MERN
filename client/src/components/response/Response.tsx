@@ -6,7 +6,7 @@ type Props = {
   response: string;
   error: {
     hasError: boolean;
-    errorText: string;
+    errorMessage: string;
   };
 };
 
@@ -23,7 +23,7 @@ const Response = (props: Props) => {
           )}
           {props.error.hasError && (
             <p className="mt-2" role="response-with-error">
-              {props.error.errorText}
+              {props.error.errorMessage}
             </p>
           )}
         </OnResponseAnimation>

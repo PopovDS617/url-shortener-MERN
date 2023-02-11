@@ -14,12 +14,12 @@ export default function Homepage() {
   };
 
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState({ hasError: false, errorText: "" });
+  const [error, setError] = useState({ hasError: false, errorMessage: "" });
   const [response, setResponse] = useState<string>("");
 
   const sumbitHandler = async (inputData: string) => {
     setResponse("");
-    setError({ hasError: false, errorText: "" });
+    setError({ hasError: false, errorMessage: "" });
     setIsLoading(true);
     try {
       const data = await axios({
@@ -38,13 +38,14 @@ export default function Homepage() {
       setIsLoading(false);
 
       if (err.response?.data.message === "Must be a valid URL") {
-        setError({ hasError: true, errorText: "Entered URL is not valid" });
-      } else setError({ hasError: true, errorText: "Something went wrong :(" });
+        setError({ hasError: true, errorMessage: "Entered URL is not valid" });
+      } else
+        setError({ hasError: true, errorMessage: "Something went wrong :(" });
     }
   };
 
   return (
-    <main className=" items-flex-start flex h-screen justify-center">
+    <main className="items-flex-start flex h-screen justify-center">
       <motion.div
         variants={options}
         initial="initial"

@@ -1,16 +1,12 @@
 import { findByText, render, screen, act } from "@testing-library/react";
 import { userJsxSetup } from "@/utils/test/test-utils";
-import App from "../App";
 import mockAxios from "__mocks__/axios";
+import Form from "../Form";
 
-afterEach(() => {
-  mockAxios.reset();
-});
-
-describe("App", () => {
+describe("Form", () => {
   describe("component", () => {
     it("should render a button and an input", () => {
-      render(<App />);
+      render(<Form sumbitHandler={() => {}} />);
       const input = screen.getByRole("textbox", {
         name: /url input/i,
       });
@@ -21,27 +17,20 @@ describe("App", () => {
       expect(button).toBeInTheDocument();
       expect(input).toBeInTheDocument();
     });
-
-    it("should not render response section or error section initially", () => {
-      render(<App />);
-      const successDiv = screen.queryByRole("response-with-success");
-      const errorDiv = screen.queryByRole("response-with-error");
-
-      expect(errorDiv).not.toBeInTheDocument();
-      expect(successDiv).not.toBeInTheDocument();
-    });
   });
+
   describe("input", () => {
     it("should be empty initially", () => {
-      render(<App />);
+      render(<Form sumbitHandler={() => {}} />);
       const input = screen.getByRole("textbox", {
         name: /url input/i,
       });
 
       expect(input).toHaveValue("");
     });
-    it("should be active", async () => {
-      const { user } = userJsxSetup(<App />);
+
+    it("should be active and display entered value", async () => {
+      const { user } = userJsxSetup(<Form sumbitHandler={() => {}} />);
 
       const input = screen.getByRole("textbox", {
         name: /url input/i,
@@ -54,7 +43,7 @@ describe("App", () => {
 
   describe("button", () => {
     it("should call submit function on click", async () => {
-      const { user } = userJsxSetup(<App />);
+      const { user } = userJsxSetup(<Form sumbitHandler={mockAxios} />);
 
       const button = screen.getByRole("button", {
         name: /press/i,
@@ -63,24 +52,6 @@ describe("App", () => {
       await user.click(button);
 
       expect(mockAxios).toHaveBeenCalledTimes(1);
-    });
-  });
-  describe("spinner", () => {
-    it("should not be visible if not loading", () => {
-      render(<App />);
-      const spinner = screen.queryByTestId("spinner");
-      expect(spinner).not.toBeInTheDocument();
-    });
-
-    it("should be visible if loading", async () => {
-      const { user } = userJsxSetup(<App />);
-
-      const button = screen.getByRole("button", {
-        name: /press/i,
-      });
-
-      await user.click(button);
-      await screen.findByTestId("spinner");
     });
   });
 });
