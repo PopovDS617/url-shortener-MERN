@@ -1,8 +1,7 @@
 import React, { FormEvent, useState } from "react";
 import ArrowIcon from "./ui/ArrowIcon";
-import { motion } from "framer-motion";
 import axios from "axios";
-import AxiosError from "axios/lib/core/AxiosError";
+
 import Spinner from "./ui/Spinner";
 import SuccessResponse from "./response/SuccessResponse";
 import ErrorResponse from "./response/ErrorResponse";
@@ -32,7 +31,7 @@ const App = () => {
       const shortId = data.data.short.shortId;
       setIsLoading(false);
       setResponse(shortId);
-    } catch (err: AxiosError) {
+    } catch (err: any) {
       setIsLoading(false);
 
       if (err.response?.data.message === "Must be a valid URL") {
@@ -53,6 +52,8 @@ const App = () => {
     >
       <div className="w-full text-center">
         <input
+          aria-label="url input"
+          name="url"
           type="text"
           className="w-1/2 p-1 text-black outline-none"
           onChange={inputHandler}

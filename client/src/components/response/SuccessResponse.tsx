@@ -7,7 +7,9 @@ type Props = {
 const SuccessResponse = (props: Props) => {
   return (
     <>
-      <p className="mt-2">{process.env.API_URL + props.response}</p>
+      <p className="mt-2" role="response-with-success">
+        {process.env.API_URL + props.response}
+      </p>
     </>
   );
 };

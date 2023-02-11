@@ -1,6 +1,9 @@
+import React from "react";
+
 const Spinner = () => {
   return (
     <svg
+      data-testid="spinner"
       viewBox="0 0 100 100"
       preserveAspectRatio="xMidYMid"
       style={{

@@ -1,5 +1,5 @@
 import React from "react";
-import {motion} from 'framer-motion'
+import { motion } from "framer-motion";
 import App from "../components/App";
 
 export default function Home() {
@@ -10,20 +10,17 @@ export default function Home() {
   };
 
   return (
-    <main className=" flex justify-center items-flex-start h-screen">
+    <main className=" items-flex-start flex h-screen justify-center">
       <motion.div
-      variants={options}
-      initial='initial'
-      animate='animate'
-      exit='exit'
-      transition={{duration:1}}
-      
-      
-      className="w-full h-full mt-10   flex justify-center items-start ">
-
+        variants={options}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        transition={{ duration: 1 }}
+        className="mt-10 flex h-full   w-full items-start justify-center "
+      >
         <App />
       </motion.div>
-
     </main>
   );
 }
