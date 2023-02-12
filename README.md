@@ -1,12 +1,12 @@
-### - npm install
-
-### - npm run dev
+for both client and server: 
+#### `1. npm install`
+#### `2. npm run dev`
 
 
 <br>
 
 to do:
 
-- [ ] - write unit tests
-- [ ] - write cypress tests
+- [x] - write unit tests
+- [x] - write cypress tests
 - [ ] - add button to copy short url
