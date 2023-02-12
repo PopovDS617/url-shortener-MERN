@@ -1,9 +1,9 @@
-describe("app e2e", () => {
+describe("app", () => {
   beforeEach(() => {
     cy.visit("/");
 
     // wait for animation
-    cy.wait(1500);
+    cy.wait(750);
   });
 
   it("should render input and button initially", () => {
@@ -24,13 +24,27 @@ describe("app e2e", () => {
     cy.get("input").should("have.value", "test string");
   });
 
-  it("should render a spinner after button has been clicked", () => {
+  // it("should render a spinner after button has been clicked", () => {
+  //   cy.get("button").click();
+
+  //   cy.get("[data-testid='spinner']");
+  // });
+  it("should render a successful response after URL has been entered and button has been clicked", () => {
+    cy.get("input").type("https://google.com");
     cy.get("button").click();
 
-    cy.get("[data-testid='spinner']");
+    cy.intercept("POST", "http://localhost:4000/url");
+    cy.get;
+
+    cy.get("[role='response-with-success']");
   });
-  // it("should render a response section after button has been clicked", () => {
-  //   cy.get("button").click();
-  //   cy.wait(4000);
-  // });
+
+  it("should render an error response after button has been clicked without URL", () => {
+    cy.get("button").click();
+
+    cy.intercept("POST", "http://localhost:4000/url");
+    cy.get;
+
+    cy.get("[role='response-with-error']");
+  });
 });

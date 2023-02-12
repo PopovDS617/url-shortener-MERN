@@ -35,7 +35,7 @@ describe("Homepage", () => {
       await screen.findByTestId("spinner");
     });
   });
-  it("should render an element with response text if request was successfull", async () => {
+  it("should render an element with response text if request was successful", async () => {
     const { user } = userJsxSetup(<Homepage />);
     const button = screen.getByRole("button", {
       name: /press/i,
@@ -50,7 +50,7 @@ describe("Homepage", () => {
     await screen.findByRole("response-with-success");
   });
 
-  it("should render an element with an error text if request was successfull", async () => {
+  it("should render an element with an error text if request was successful", async () => {
     const { user } = userJsxSetup(<Homepage />);
     const button = screen.getByRole("button", {
       name: /press/i,
