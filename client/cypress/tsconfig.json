@@ -5,8 +5,5 @@
     // be explicit about types included
     // to avoid clashing with Jest types
     "types": ["cypress"]
-  },
-  "include": ["../node_modules/cypress", "./**/spec.ts"],
-  "exclude": ["./**/test.ts"],
-  "files": ["../cypress.config.ts"]
+  }
 }
