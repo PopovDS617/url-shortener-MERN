@@ -39,7 +39,7 @@ describe("app", () => {
     cy.get("[role='response-with-success']");
   });
 
-  it("should render an error response after button has been clicked without URL", () => {
+  it("should render an error response if button has been clicked without any input", () => {
     cy.intercept("POST", "http://localhost:4000/url");
     cy.get("button").click();
 
