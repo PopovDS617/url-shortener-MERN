@@ -1,6 +1,6 @@
-### - npm install
-
-### - npm run dev
+for both client and server: 
+#### `1. npm install`
+#### `2. npm run dev`
 
 
 <br>
