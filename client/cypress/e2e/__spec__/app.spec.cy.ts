@@ -30,19 +30,19 @@ describe("app", () => {
   //   cy.get("[data-testid='spinner']");
   // });
   it("should render a successful response after URL has been entered and button has been clicked", () => {
+    cy.intercept("POST", "http://localhost:4000/url");
     cy.get("input").type("https://google.com");
     cy.get("button").click();
 
-    cy.intercept("POST", "http://localhost:4000/url");
     cy.get;
 
     cy.get("[role='response-with-success']");
   });
 
   it("should render an error response after button has been clicked without URL", () => {
+    cy.intercept("POST", "http://localhost:4000/url");
     cy.get("button").click();
 
-    cy.intercept("POST", "http://localhost:4000/url");
     cy.get;
 
     cy.get("[role='response-with-error']");

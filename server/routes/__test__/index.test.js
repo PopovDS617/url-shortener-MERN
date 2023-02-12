@@ -12,20 +12,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.redirectHandler = exports.createShortUrl = void 0;
-const shortUrl_1 = __importDefault(require("../models/shortUrl"));
-const createShortUrl = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    const { destination } = req.body;
-    const short = yield shortUrl_1.default.create({ destination });
-    return res.status(201).json({ short });
+const index_1 = __importDefault(require("../index"));
+const supertest_1 = __importDefault(require("supertest"));
+describe('GET /', () => {
+    it('returns status code 200', () => __awaiter(void 0, void 0, void 0, function* () {
+        const res = yield (0, supertest_1.default)(index_1.default).get('/1231231');
+        console.log(res);
+        expect(res.statusCode).toEqual(200);
+    }));
 });
-exports.createShortUrl = createShortUrl;
-const redirectHandler = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { shortId } = req.params;
-    const short = yield shortUrl_1.default.findOne({ shortId }).lean();
-    if (!short) {
-        return res.sendStatus(404);
-    }
-    return res.redirect(short.destination);
-});
-exports.redirectHandler = redirectHandler;
