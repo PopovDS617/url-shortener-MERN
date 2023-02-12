@@ -7,6 +7,6 @@
 
 to do:
 
-- [ ] - write unit tests
-- [ ] - write cypress tests
+- [x] - write unit tests
+- [x] - write cypress tests
 - [ ] - add button to copy short url
