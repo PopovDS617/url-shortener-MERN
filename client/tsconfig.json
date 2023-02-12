@@ -22,6 +22,6 @@
     },
     "incremental": true
   },
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules", "cypress.config.ts", "cypress/**/*.ts"],
   "include": ["next-env.d.ts", "**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx"]
 }
