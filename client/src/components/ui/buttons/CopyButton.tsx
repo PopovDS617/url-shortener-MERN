@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import CopyUrlIcon from "./CopyIcon";
-import DoneIcon from "./DoneIcon";
+import CopyUrlIcon from "../CopyIcon";
+import DoneIcon from "../DoneIcon";
 
 type Props = {
   variant: "copy" | "done";

@@ -1,4 +1,5 @@
 import React, { useState, FormEvent } from "react";
+import FormButton from "../ui/buttons/FormButton";
 
 type Props = {
   sumbitHandler: (arg: string) => void;
@@ -30,9 +31,7 @@ const Form = (props: Props) => {
           className="w-1/2 p-1 text-black outline-none"
           onChange={inputHandler}
         />
-        <button className="ml-4 p-1 px-4 outline outline-2 outline-white duration-150  hover:-translate-y-1 hover:shadow-md hover:shadow-white hover:transition-all hover:duration-150 ">
-          press
-        </button>
+        <FormButton variant={url ? "active" : "disabled"} />
       </div>
     </form>
   );

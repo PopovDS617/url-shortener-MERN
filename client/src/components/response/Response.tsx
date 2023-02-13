@@ -3,7 +3,7 @@ import OnResponseAnimation from "../animation/OnResponseAnimation";
 import ArrowIcon from "../ui/ArrowIcon";
 import QRCode from "react-qr-code";
 
-import CopyButton from "../ui/CopyButton";
+import CopyButton from "../ui/buttons/CopyButton";
 
 type Props = {
   response: string;
@@ -41,11 +41,7 @@ const Response = (props: Props) => {
                 <p>{process.env.API_URL + props.response}</p>
                 <div className="cursor-pointer px-2">
                   <button onClick={copyTextToClipboard}>
-                    {isCopied ? (
-                      <CopyButton variant="done" />
-                    ) : (
-                      <CopyButton variant="copy" />
-                    )}
+                    <CopyButton variant={isCopied ? "done" : "copy"} />
                   </button>
                 </div>
               </div>
