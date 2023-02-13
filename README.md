@@ -15,4 +15,4 @@ to do:
 - [ ] - add QR code generator
 
 - server
-- - [x] - write unit tests
+- [ ] - write unit tests
