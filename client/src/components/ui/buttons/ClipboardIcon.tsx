@@ -18,7 +18,7 @@ const buttonOptions = {
   exit: { opacity: 0, y: -15 },
 };
 
-const CopyButton = (props: Props) => {
+const ClipboardIcon = (props: Props) => {
   return (
     <motion.div
       variants={sectionOptions}
@@ -26,6 +26,7 @@ const CopyButton = (props: Props) => {
       animate="animate"
       exit="exit"
       transition={{ duration: 0.5 }}
+      className="mt-5 md:mt-0"
     >
       {props.variant === "done" ? (
         <motion.div
@@ -44,4 +45,4 @@ const CopyButton = (props: Props) => {
   );
 };
 
-export default CopyButton;
+export default ClipboardIcon;

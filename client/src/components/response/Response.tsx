@@ -3,7 +3,7 @@ import OnResponseAnimation from "../animation/OnResponseAnimation";
 import ArrowIcon from "../ui/ArrowIcon";
 import QRCode from "react-qr-code";
 
-import CopyButton from "../ui/buttons/CopyButton";
+import ClipboardIcon from "../ui/buttons/ClipboardIcon";
 
 type Props = {
   response: string;
@@ -35,13 +35,13 @@ const Response = (props: Props) => {
           {props.response && (
             <>
               <div
-                className="mt-2 flex items-start justify-center"
+                className="mt-2 flex flex-col items-center justify-center md:flex-row md:items-start"
                 role="response-with-success"
               >
                 <p>{process.env.API_URL + props.response}</p>
                 <div className="cursor-pointer px-2">
                   <button onClick={copyTextToClipboard}>
-                    <CopyButton variant={isCopied ? "done" : "copy"} />
+                    <ClipboardIcon variant={isCopied ? "done" : "copy"} />
                   </button>
                 </div>
               </div>
