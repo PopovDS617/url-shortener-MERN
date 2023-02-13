@@ -14,4 +14,4 @@ to do:
 - [ ] - add button to copy short url
 
 - server
-- - [x] - write unit tests
+- [ ] - write unit tests
