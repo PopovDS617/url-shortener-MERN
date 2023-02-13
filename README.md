@@ -11,8 +11,8 @@ to do:
 - client
 - [x] - write unit tests
 - [x] - write cypress tests
-- [ ] - add button to copy short url
-- [ ] - add QR code generator
+- [x] - add copy to clipboard button
+- [x] - add QR code generator
 
 - server
 - [ ] - write unit tests
