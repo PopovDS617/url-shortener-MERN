@@ -1,3 +1,7 @@
+## DEMO - https://geturl.vercel.app/
+
+
+## Getting Started
 for both client and server:
 
 #### `1. npm install`
@@ -6,7 +10,7 @@ for both client and server:
 
 <br>
 
-to do:
+## TO DO:
 
 - client
 - [x] - write unit tests
