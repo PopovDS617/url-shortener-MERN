@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import OnResponseAnimation from "../animation/OnResponseAnimation";
 import ArrowIcon from "../ui/ArrowIcon";
-import QRCode from "react-qr-code";
+import { QrCode } from "./qrcode/QrCode";
 
 import ClipboardIcon from "../ui/buttons/ClipboardIcon";
 
@@ -45,15 +45,7 @@ const Response = (props: Props) => {
                   </button>
                 </div>
               </div>
-              <div className="mt-10">
-                <QRCode
-                  bgColor="black"
-                  fgColor="white"
-                  size={256}
-                  value={process.env.API_URL + props.response}
-                  viewBox={`0 0 256 256`}
-                />
-              </div>
+              <QrCode value={process.env.API_URL + props.response} />
             </>
           )}
           {props.error.hasError && (
